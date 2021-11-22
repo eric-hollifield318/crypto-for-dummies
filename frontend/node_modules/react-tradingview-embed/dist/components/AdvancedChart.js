@@ -1,0 +1,46 @@
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
+import { jsx as _jsx } from "react/jsx-runtime";
+import React from "react";
+var AdvancedChart = function (props) {
+    var widgetProps = props.widgetProps, widgetPropsAny = props.widgetPropsAny;
+    var containerId = "advanced-chart-widget-container";
+    if (widgetProps === null || widgetProps === void 0 ? void 0 : widgetProps.container_id) {
+        containerId = widgetProps === null || widgetProps === void 0 ? void 0 : widgetProps.container_id;
+    }
+    var ref = React.createRef();
+    React.useEffect(function () {
+        var refValue;
+        if (ref.current) {
+            var script = document.createElement("script");
+            script.src = "https://s3.tradingview.com/tv.js";
+            script.async = true;
+            script.onload = function () {
+                if (typeof TradingView !== "undefined") {
+                    new TradingView.widget(__assign(__assign({ "width": "100%", "height": "640px", "symbol": "BITMEX:XBTUSD", "interval": "240", "range": "1M", "timezone": "Etc/UTC", "theme": "dark", "style": "9", "locale": "en", "toolbar_bg": "rgba(0, 0, 0, 0.8)", "hide_top_toolbar": false, "hide_side_toolbar": false, "withdateranges": true, "save_image": true, "enable_publishing": false, "container_id": containerId }, widgetProps), widgetPropsAny));
+                }
+            };
+            ref.current.appendChild(script);
+            refValue = ref.current;
+        }
+        return function () {
+            if (refValue) {
+                while (refValue.firstChild) {
+                    refValue.removeChild(refValue.firstChild);
+                }
+            }
+        };
+    }, [ref, widgetProps, widgetPropsAny, containerId]);
+    return _jsx("div", { id: containerId, ref: ref }, void 0);
+};
+export default AdvancedChart;
+//# sourceMappingURL=AdvancedChart.js.map
